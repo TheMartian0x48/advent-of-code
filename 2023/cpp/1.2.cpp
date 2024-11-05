@@ -3,7 +3,6 @@
 
 using namespace std;
 
-
 int main() {
     vector<string> numbers = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
     string line;
@@ -21,7 +20,7 @@ int main() {
             }
 
             for (int n = 1; n <= 9; n++) {
-                const string & number = numbers[n - 1];
+                const string &number = numbers[n - 1];
                 int n_len = number.size();
                 bool is_start_of_number = true;
                 for (int pos = 0; pos < n_len; pos++) {
