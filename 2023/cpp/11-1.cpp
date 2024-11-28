@@ -8,25 +8,25 @@ int main() {
     vector<string> universe;
     string line;
     while (getline(cin, line)) universe.push_back(line);
-    vector<int> cols(universe[0].size(), 0);
-    vector<int> rows(universe.size(), 0);
-    vector<int> rows_expands(universe.size(), true);
-    vector<bool> cols_expands(universe[0].size(), true);
+    vector<long long> cols_distance(universe[0].size(), 0);
+    vector<long long> rows_distance(universe.size(), 0);
 
     for (int row = 0; row < universe.size(); row++) {
-        for (int col = 0; col < universe[0].size(); col++) {
-            rows_expands[row] = rows_expands[row] && universe[row][col] == '.';
+        bool does_expand = true;
+        for (int col = 0; does_expand && col < universe[0].size(); col++) {
+            does_expand = universe[row][col] == '.';
         }
-        rows[row] += rows_expands[row] ? 2 : 1;
-        if (row) rows[row] += rows[row - 1];
+        rows_distance[row] += does_expand ? 2 : 1;
+        if (row) rows_distance[row] += rows_distance[row - 1];
     }
 
     for (int col = 0; col < universe[0].size(); col++) {
-        for (int row = 0; row < universe.size(); row++) {
-            cols_expands[col] = cols_expands[col] && universe[row][col] == '.';
+        bool does_expand = true;
+        for (int row = 0; does_expand && row < universe.size(); row++) {
+            does_expand = universe[row][col] == '.';
         }
-        cols[col] += cols_expands[col] ? 2 : 1;
-        if (col) cols[col] += cols[col - 1];
+        cols_distance[col] += does_expand ? 2 : 1;
+        if (col) cols_distance[col] += cols_distance[col - 1];
     }
 
     vector<pair<int, int>> galaxies;
@@ -35,15 +35,13 @@ int main() {
             if (universe[i][j] == '#') galaxies.push_back({i, j});
         }
     }
-    int result = 0;
+    long long result = 0;
     for (int i = 0; i < galaxies.size(); i++) {
         for (int j = i + 1; j < galaxies.size(); j++) {
             auto gOne = galaxies[i];
             auto gTwo = galaxies[j];
-            int ans = 0;
-            ans += abs(cols[gTwo.second] - cols[gOne.second]);
-            ans += abs(rows[gTwo.first] - rows[gOne.first]);
-            result += ans;
+            result += abs(cols_distance[gTwo.second] - cols_distance[gOne.second]);
+            result += abs(rows_distance[gTwo.first] - rows_distance[gOne.first]);
         }
     }
     cout << result << endl;
