@@ -1,0 +1,16 @@
+# .clang-format
+
+# Basic formatting options
+BasedOnStyle: LLVM  # You can choose other styles like Google, WebKit, etc.
+IndentWidth: 4      # Set the number of spaces for indentation
+TabWidth: 4         # Set the width of a tab character
+UseTab: Never        # Do not use tabs, only spaces
+ColumnLimit: 120
+# Additional options
+AlignTrailingComments: true
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: true
+AllowShortLoopsOnASingleLine: true
+BreakBeforeBinaryOperators: NonAssignment
+NamespaceIndentation: All
+SortIncludes: false
