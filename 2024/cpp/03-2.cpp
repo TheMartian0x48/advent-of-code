@@ -55,7 +55,8 @@ long long solve(const string &section) {
 int main() {
     string input;
     long long result = 0;
-    string sections; cin >> sections;
+    string sections;
+    cin >> sections;
     while (cin >> input) sections += "\n" + input;
     result = solve(sections);
     cout << result << "\n";
