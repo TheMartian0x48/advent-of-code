@@ -27,7 +27,6 @@ int main() {
             }
         }
     }
-    int counter = 0;
     for (auto iter = antenna.begin(); iter != antenna.end(); iter++) {
         auto &antennas = iter->second;
         for (int i = 0; i < antennas.size(); i++) {
@@ -40,7 +39,6 @@ int main() {
                 int nc = antennas[i].second - dx;
                 int step = 1;
                 while (nr >= 0 && nc >= 0 && nr < gr.size() && nc < gr[0].size()) {
-                    counter++;
                     gr[nr][nc] = '#';
                     antinodes.insert(to_string(nr) + "|" + to_string(nc));
                     step++;
@@ -51,7 +49,6 @@ int main() {
                 nc = antennas[j].second + dx;
                 step = 1;
                 while (nr >= 0 && nc >= 0 && nr < gr.size() && nc < gr[0].size()) {
-                    counter++;
                     gr[nr][nc] = '#';
                     antinodes.insert(to_string(nr) + "|" + to_string(nc));
                     step++;
