@@ -39,7 +39,6 @@ int main() {
                 int nc = antennas[i].second - dx;
                 int step = 1;
                 while (nr >= 0 && nc >= 0 && nr < gr.size() && nc < gr[0].size()) {
-                    gr[nr][nc] = '#';
                     antinodes.insert(to_string(nr) + "|" + to_string(nc));
                     step++;
                     nr = antennas[i].first - step * dy;
@@ -49,7 +48,6 @@ int main() {
                 nc = antennas[j].second + dx;
                 step = 1;
                 while (nr >= 0 && nc >= 0 && nr < gr.size() && nc < gr[0].size()) {
-                    gr[nr][nc] = '#';
                     antinodes.insert(to_string(nr) + "|" + to_string(nc));
                     step++;
                     nr = antennas[j].first + step * dy;
