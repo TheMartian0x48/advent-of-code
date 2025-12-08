@@ -32,10 +32,11 @@ pub fn main() !void {
     const cols = grid.items[0].items.len;
     var has_rolled = true;
 
-    var position_to_remove = std.ArrayList(Position).initCapacity(allocator, 256);
+    var position_to_remove = try std.ArrayList(Position).initCapacity(allocator, 256);
     defer position_to_remove.deinit(allocator);
 
     while (has_rolled) {
+        has_rolled = false;
         for (0..rows) |r| {
             for (0..cols) |c| {
                 if (grid.items[r].items[c] != '@') continue;
@@ -61,13 +62,11 @@ pub fn main() !void {
                         .col = c,
                     };
                     try position_to_remove.append(allocator, p);
-                } else {
-                    has_rolled = false;
                 }
             }
         }
         while (position_to_remove.pop()) |p| {
-            grid.items[p.row].items[p.col] = '.';
+            grid.items[p.row].items[p.col] = 'x';
         }
     }
     for (0..rows) |row| {
